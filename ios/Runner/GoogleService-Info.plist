@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>996916163591-k4apql9hik25u4s5intplcdl80vj073q.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.996916163591-k4apql9hik25u4s5intplcdl80vj073q</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAgkWkpPDoOcVwYAy8q3c6J2AWjSDrAkyY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>996916163591</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.speedXStore</string>
+	<key>PROJECT_ID</key>
+	<string>speed-x-store</string>
+	<key>STORAGE_BUCKET</key>
+	<string>speed-x-store.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:996916163591:ios:b2ca462a28992c73db26a2</string>
+</dict>
+</plist>

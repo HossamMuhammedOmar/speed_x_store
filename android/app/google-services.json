@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "996916163591",
+    "project_id": "speed-x-store",
+    "storage_bucket": "speed-x-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996916163591:android:21ee349d04738e7fdb26a2",
+        "android_client_info": {
+          "package_name": "com.example.speed_x_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996916163591-v75d0is8i4hfntbp2e7evhlfg5n2htrb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.speed_x_store",
+            "certificate_hash": "eb634f5cde36553c2c161e3cfd98af461d946f7b"
+          }
+        },
+        {
+          "client_id": "996916163591-9m3pf91ps9bbaa6ekhh6pb79uoquki8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZVs2qcLKt4opiYybqBjceQKEFn-0ao2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996916163591-9m3pf91ps9bbaa6ekhh6pb79uoquki8a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "996916163591-k4apql9hik25u4s5intplcdl80vj073q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.speedXStore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
