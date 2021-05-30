@@ -13,6 +13,7 @@ class RegisterScreen extends StatelessWidget {
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _addressController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -82,7 +83,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 70,
+                      height: 40,
                     ),
                     Form(
                       key: _formKey,
@@ -181,6 +182,23 @@ class RegisterScreen extends StatelessWidget {
                           SizedBox(
                             height: 30,
                           ),
+                          TextFormField(
+                            validator: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Enter a valid address';
+                              }
+                              return null;
+                            },
+                            controller: _addressController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Address',
+                              prefixIcon: Icon(Icons.home),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
                           state is! RegisterLoadingState
                               ? ConstrainedBox(
                                   constraints: BoxConstraints.tightFor(
@@ -193,6 +211,7 @@ class RegisterScreen extends StatelessWidget {
                                           password: _passwordController.text,
                                           phone: _phoneController.text,
                                           name: _nameController.text,
+                                          address: _addressController.text,
                                           context: context,
                                         );
                                       }
