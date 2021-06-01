@@ -38,7 +38,7 @@ android {
         applicationId "com.example.speed_x_store"
         minSdkVersion 16
         targetSdkVersion 30
-        multiDexEnables true
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

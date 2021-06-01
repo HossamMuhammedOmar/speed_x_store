@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:speed_x_store/constants.dart';
+import 'package:speed_x_store/screens/home_screen.dart';
 import 'package:speed_x_store/screens/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -60,6 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.amber,
                           fontWeight: FontWeight.w300,
+                          fontFamily: 'ZCOOLKuaiLe',
                         ),
                       ),
                     ],
@@ -73,11 +76,17 @@ class WelcomeScreen extends StatelessWidget {
                       minHeight: 50,
                     ),
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginScreen()),
+                              builder: (context) =>
+                                  prefs.getString(USER_ID) != null
+                                      ? HomeScreen()
+                                      : LoginScreen(),
+                            ),
                             (route) => false);
                       },
                       child: Text(

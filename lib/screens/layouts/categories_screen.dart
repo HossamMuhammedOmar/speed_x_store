@@ -46,10 +46,16 @@ class CategoriesScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Speed X Store',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white),
+                  Center(
+                    child: Text(
+                      'Speed X Store',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'ZCOOLKuaiLe',
+                        letterSpacing: 1,
+                      ),
+                    ),
                   ),
                   SizedBox(height: 60),
                 ],

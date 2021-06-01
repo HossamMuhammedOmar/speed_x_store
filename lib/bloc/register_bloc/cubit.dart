@@ -62,6 +62,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
       phone: phone,
       address: address,
       uId: uId,
+      isEmailVerified: false,
     );
     FirebaseFirestore.instance
         .collection('user')
