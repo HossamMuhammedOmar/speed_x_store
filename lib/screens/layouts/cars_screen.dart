@@ -80,6 +80,7 @@ class CarsScreen extends StatelessWidget {
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 22.0,
+                              fontFamily: 'Poppins',
                             ),
                           ),
                         ),

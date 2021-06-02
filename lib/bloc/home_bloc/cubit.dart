@@ -82,7 +82,7 @@ class HomeCubit extends Cubit<HomeStates> {
   //? Get Categories Data
   void getCategories() {
     emit(GetCategoriesDataLoading());
-    FirebaseFirestore.instance.collectionGroup('categories').get().then(
+    FirebaseFirestore.instance.collection('categories').get().then(
       (value) {
         value.docs.forEach((element) {
           categories.add(element.data());

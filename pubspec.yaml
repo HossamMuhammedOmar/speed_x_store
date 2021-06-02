@@ -75,6 +75,9 @@ flutter:
     - family: ZCOOLKuaiLe
       fonts:
         - asset: assets/fonts/ZCOOLKuaiLe-Regular.ttf
+    - family: Poppins
+      fonts: 
+        - asset: assets/fonts/Poppins-Regular.ttf
       
   
   # For details regarding fonts from package dependencies,
