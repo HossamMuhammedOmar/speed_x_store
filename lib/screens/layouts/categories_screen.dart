@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speed_x_store/constants.dart';
 
 class CategoriesScreen extends StatelessWidget {
   @override
@@ -100,7 +101,7 @@ class CategoriesScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 20),
+                padding: const EdgeInsets.only(left: 30, top: 20),
                 child: Text(
                   '5 Category avaiable',
                   style: TextStyle(
@@ -113,31 +114,17 @@ class CategoriesScreen extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(top: 20, right: 20, left: 20),
+                  padding: EdgeInsets.only(top: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: ListView.separated(
+                          padding:
+                              EdgeInsets.only(right: 20, top: 10, left: 20),
                           itemBuilder: (context, index) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    spreadRadius: 1,
-                                    blurRadius: 3,
-                                    offset: Offset(
-                                      0,
-                                      1,
-                                    ), // changes position of shadow
-                                  ),
-                                ],
-                                color: Colors.white,
-                              ),
-                              height: 210,
-                            );
+                            return _buildCategoriesList();
                           },
                           separatorBuilder: (context, index) => SizedBox(
                             height: 30,
@@ -153,6 +140,48 @@ class CategoriesScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildCategoriesList() {
+    return Stack(
+      alignment: Alignment.bottomRight,
+      children: [
+        Container(
+          height: 220,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(40)),
+            color: Colors.white,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('CARES'),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          width: 63,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Color(0xffEBEFF8),
+            borderRadius: BorderRadius.circular(7),
+          ),
+        ),
+        MaterialButton(
+          onPressed: () {},
+          color: kPrimaryLightColor,
+          minWidth: 50,
+          child: Icon(
+            Icons.double_arrow_sharp,
+            color: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 }
