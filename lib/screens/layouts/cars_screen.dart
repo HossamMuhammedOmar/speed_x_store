@@ -255,80 +255,86 @@ class CarsScreen extends StatelessWidget {
 
   //?
   Widget _buildCars(context, item) {
-    return Container(
-      width: double.infinity,
-      height: 270,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              item.image,
-              fit: BoxFit.cover,
-              height: 270,
-            ),
-          ),
-          Container(
-            height: 270,
-            decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: () {
+        print(item.id);
+        HomeCubit.get(context).getProductDetail(item.id);
+      },
+      child: Container(
+        width: double.infinity,
+        height: 270,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Stack(
+          children: [
+            ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.black.withOpacity(.5),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: kPrimaryLightColor.withOpacity(0.7),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
+              child: Image.network(
+                item.image,
+                fit: BoxFit.cover,
+                height: 270,
               ),
             ),
-            child: Text(
-              '${item.price} EGP',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 19,
-                fontFamily: 'ZCOOLKuaiLe',
+            Container(
+              height: 270,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.black.withOpacity(.5),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${item.name}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+            Container(
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: kPrimaryLightColor.withOpacity(0.7),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
                 ),
-                SizedBox(
-                  height: 5,
+              ),
+              child: Text(
+                '${item.price} EGP',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                  fontFamily: 'ZCOOLKuaiLe',
                 ),
-                Row(
-                  children: [
-                    Text(
-                      '${item.color} - ${item.model} - ${item.type}',
-                      style: TextStyle(
-                        color: Colors.white,
-                        letterSpacing: 1,
-                        fontSize: 14,
-                      ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${item.name}',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '${item.color} - ${item.model} - ${item.type}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          letterSpacing: 1,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

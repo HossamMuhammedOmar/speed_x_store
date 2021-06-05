@@ -66,9 +66,10 @@ class HomeCubit extends Cubit<HomeStates> {
     FirebaseFirestore.instance.collection('cars').get().then(
       (value) {
         value.docs.forEach((element) {
-          carsModel = CarsModel.fromJson(element.data());
+          carsModel = CarsModel.fromJson(element.data(), element.id);
           cars.add(carsModel);
         });
+
         emit(GetCarsDataSuccess());
       },
     ).catchError(
@@ -108,5 +109,17 @@ class HomeCubit extends Cubit<HomeStates> {
     // });
 
     print(newItem);
+  }
+
+  //? Filter Product Item
+  void getProductDetail(id) {
+    FirebaseFirestore.instance.collection('cars').doc(id).get().then(
+      (value) {
+        userModel = UserModel.fromJson(value.data());
+        print(value.data());
+      },
+    ).catchError(
+      (e) {},
+    );
   }
 }

@@ -5,6 +5,7 @@ class CarsModel {
   String? image;
   String? name;
   String? color;
+  String? id;
 
   CarsModel({
     this.name,
@@ -15,12 +16,15 @@ class CarsModel {
     this.color,
   });
 
-  CarsModel.fromJson(Map<String, dynamic>? json) {
+  CarsModel.getID(this.id);
+
+  CarsModel.fromJson(Map<String, dynamic>? json, id) {
     name = json?['name'];
     price = json?['price'];
     type = json?['type'];
     model = json?['model'];
     image = json?['image'];
     color = json?['color'];
+    this.id = id;
   }
 }
