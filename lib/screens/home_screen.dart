@@ -7,10 +7,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        print(state);
+      },
       builder: (context, state) {
         final _homeCubit = HomeCubit.get(context);
-
         return Scaffold(
           backgroundColor: Color(0xffEBEFF8),
           bottomNavigationBar: BottomNavigationBar(
@@ -36,7 +37,11 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          body: _homeCubit.screens[_homeCubit.currentIndex],
+          body: state is! GetUserDataLoading ||
+                  state is! GetCarsDataLoading ||
+                  state is! GetCategoriesDataLoading
+              ? _homeCubit.screens[_homeCubit.currentIndex]
+              : Center(child: CircularProgressIndicator()),
         );
       },
     );

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:speed_x_store/bloc/home_bloc/cubit.dart';
 import 'package:speed_x_store/bloc/home_bloc/states.dart';
 import 'package:speed_x_store/constants.dart';
+import 'package:speed_x_store/screens/car_detail_screen.dart';
 import 'package:speed_x_store/screens/items_screen.dart';
 
 class CarsScreen extends StatelessWidget {
@@ -257,8 +258,13 @@ class CarsScreen extends StatelessWidget {
   Widget _buildCars(context, item) {
     return GestureDetector(
       onTap: () {
-        print(item.id);
-        HomeCubit.get(context).getProductDetail(item.id);
+        HomeCubit.get(context).getCarDetail(item.id);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CarDetailScreen(item.id),
+          ),
+        );
       },
       child: Container(
         width: double.infinity,

@@ -4,6 +4,8 @@ import 'package:speed_x_store/bloc/home_bloc/cubit.dart';
 import 'package:speed_x_store/bloc/home_bloc/states.dart';
 import 'package:speed_x_store/screens/home_screen.dart';
 
+import 'car_detail_screen.dart';
+
 class ItemScreen extends StatelessWidget {
   final String id;
   ItemScreen(this.id);
@@ -137,57 +139,68 @@ class ItemScreen extends StatelessWidget {
   }
 
   Widget _grideBuilder(model, context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-              image: NetworkImage(
-                model['image'],
+    return GestureDetector(
+      onTap: () {
+        HomeCubit.get(context).getCarDetail(model['id']);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CarDetailScreen(model['id']),
+          ),
+        );
+      },
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              image: DecorationImage(
+                image: NetworkImage(
+                  model['image'],
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
           ),
-        ),
-        Container(
-          color: Colors.black.withOpacity(0.6),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10, left: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '${model['name']}',
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.9),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  Text(
-                    '${model['color']} - ${model['model']} - ${model['type']}',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
-                      letterSpacing: 1,
-                      fontSize: 12,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ],
+          Container(
+            color: Colors.black.withOpacity(0.6),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10, left: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${model['name']}',
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.9),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '${model['color']} - ${model['model']} - ${model['type']}',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        letterSpacing: 1,
+                        fontSize: 12,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

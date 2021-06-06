@@ -1,69 +1,346 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:speed_x_store/bloc/home_bloc/cubit.dart';
+import 'package:speed_x_store/bloc/home_bloc/states.dart';
+import 'package:speed_x_store/constants.dart';
+import 'package:speed_x_store/screens/login_screen.dart';
 
 class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffEBEFF8),
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 270,
-            padding: const EdgeInsets.all(20.0),
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade300,
-                  blurRadius: 10.0, // soften the shadow
-                  spreadRadius: 5.0, //extend the shadow
-                  offset: Offset(
-                    5.0, // Move to right 10  horizontally
-                    5.0, // Move to bottom 10 Vertically
-                  ),
-                )
-              ],
-              shape: BoxShape.rectangle,
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xff3F41B9),
-                  Color(0xff5C48EC),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(100.0),
-                bottomRight: Radius.circular(100.0),
-                topLeft: Radius.circular(30.0),
-                topRight: Radius.circular(30.0),
-              ),
-            ),
+    return BlocConsumer<HomeCubit, HomeStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color(0xff3f41b9),
+            centerTitle: true,
+            title: Text('Profile Info'),
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Text(
-                      'Speed X Store',
-                      textAlign: TextAlign.center,
+          backgroundColor: Color(0xffEBEFF8),
+          body: Container(
+            width: double.infinity,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 40.0, bottom: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                            'https://www.ubackground.com/_ph/90/804234973.jpg',
+                          ),
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 17,
+                    ),
+                    Text(
+                      '${HomeCubit.get(context).userModel?.name}',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'ZCOOLKuaiLe',
+                        fontSize: 18,
+                        color: Colors.black.withOpacity(.8),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      '${HomeCubit.get(context).userModel?.email}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w300,
                         letterSpacing: 1,
                       ),
                     ),
-                  ),
-                  SizedBox(height: 60),
-                ],
+                    SizedBox(
+                      height: 30,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: Color(0XFFF4F5FA),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.privacy_tip_outlined,
+                                size: 20.0,
+                                color: Color(0xFF4E4E4E),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                'Privacy',
+                                style: TextStyle(
+                                  color: Color(0xFF4E4E4E),
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Spacer(),
+                              Icon(
+                                Icons.navigate_next,
+                                color: Color(0xFF4E4E4E),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: Color(0XFFF4F5FA),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.history,
+                                size: 20.0,
+                                color: Color(0xFF4E4E4E),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                'Purchase History',
+                                style: TextStyle(
+                                  color: Color(0xFF4E4E4E),
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Spacer(),
+                              Icon(
+                                Icons.navigate_next,
+                                color: Color(0xFF4E4E4E),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: Color(0XFFF4F5FA),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.help_outline_sharp,
+                                size: 20.0,
+                                color: Color(0xFF4E4E4E),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                'Help @ Support',
+                                style: TextStyle(
+                                  color: Color(0xFF4E4E4E),
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Spacer(),
+                              Icon(
+                                Icons.navigate_next,
+                                color: Color(0xFF4E4E4E),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: Color(0XFFF4F5FA),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.settings,
+                                size: 20.0,
+                                color: Color(0xFF4E4E4E),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                'Settings',
+                                style: TextStyle(
+                                  color: Color(0xFF4E4E4E),
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Spacer(),
+                              Icon(
+                                Icons.navigate_next,
+                                color: Color(0xFF4E4E4E),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: Color(0XFFF4F5FA),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.inventory_outlined,
+                                size: 20.0,
+                                color: Color(0xFF4E4E4E),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                'Invite a Friend',
+                                style: TextStyle(
+                                  color: Color(0xFF4E4E4E),
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Spacer(),
+                              Icon(
+                                Icons.navigate_next,
+                                color: Color(0xFF4E4E4E),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.remove(USER_ID).then(
+                          (value) {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()),
+                              (route) => false,
+                            );
+                            Fluttertoast.showToast(
+                              msg: "Sign out successfully!",
+                              toastLength: Toast.LENGTH_LONG,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.green,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+                          },
+                        ).catchError(
+                          (e) {
+                            print(e.toString());
+                          },
+                        );
+                      },
+                      child: Container(
+                        width: 320,
+                        height: 50,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: Color(0XFFF4F5FA),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.logout_rounded,
+                                size: 20.0,
+                                color: Color(0xFF4E4E4E),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                'Logout',
+                                style: TextStyle(
+                                  color: Color(0xFF4E4E4E),
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

@@ -28,6 +28,7 @@ class HomeCubit extends Cubit<HomeStates> {
   List cars = [];
   List categories = [];
   List newItem = [];
+  List carDetail = [];
 
   UserModel? userModel;
   CarsModel? carsModel;
@@ -66,7 +67,7 @@ class HomeCubit extends Cubit<HomeStates> {
     FirebaseFirestore.instance.collection('cars').get().then(
       (value) {
         value.docs.forEach((element) {
-          carsModel = CarsModel.fromJson(element.data(), element.id);
+          carsModel = CarsModel.fromJson(element.data());
           cars.add(carsModel);
         });
 
@@ -113,13 +114,25 @@ class HomeCubit extends Cubit<HomeStates> {
 
   //? Filter Product Item
   void getProductDetail(id) {
+    emit(GetCarDetailDataLoading());
     FirebaseFirestore.instance.collection('cars').doc(id).get().then(
       (value) {
-        userModel = UserModel.fromJson(value.data());
+        carsModel = CarsModel.fromJson(value.data());
         print(value.data());
+        emit(GetCarDetailDataSuccess());
       },
     ).catchError(
-      (e) {},
+      (e) {
+        print(e.toString());
+        emit(GetCarDetailDataError());
+      },
     );
+  }
+
+  void getCarDetail(id) {
+    carDetail = cars.where((element) {
+      print(element.id);
+      return element.id == id;
+    }).toList();
   }
 }

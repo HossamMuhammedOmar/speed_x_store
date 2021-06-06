@@ -26,3 +26,11 @@ class GetCategoriesDataLoading extends HomeStates {}
 class GetCategoriesDataSuccess extends HomeStates {}
 
 class GetCategoriesDataError extends HomeStates {}
+
+//? States For Get Car Details
+
+class GetCarDetailDataLoading extends HomeStates {}
+
+class GetCarDetailDataSuccess extends HomeStates {}
+
+class GetCarDetailDataError extends HomeStates {}
